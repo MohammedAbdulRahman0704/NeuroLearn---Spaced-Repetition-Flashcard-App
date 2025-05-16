@@ -19,7 +19,7 @@ import SettingsPage from './pages/SettingsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // Protected route component
-import ProtectedRoute from './components/auth/ProtectedRoute';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 function App() {
   const { theme } = useTheme();
