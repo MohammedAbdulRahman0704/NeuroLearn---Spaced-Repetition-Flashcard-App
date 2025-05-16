@@ -11,27 +11,26 @@ const Flashcard: React.FC<FlashcardProps> = ({ question, answer, isFlipped = fal
   return (
     <div
       onClick={onFlip}
-      className="w-72 h-48 cursor-pointer perspective"
-      aria-label="Flashcard"
+      className="w-80 h-52 cursor-pointer relative focus:outline-none"
       role="button"
       tabIndex={0}
-      onKeyPress={(e) => {
+      onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') onFlip?.();
       }}
     >
       <div
-        className={`relative w-full h-full text-center transition-transform duration-500 transform-style-preserve-3d ${
+        className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${
           isFlipped ? 'rotate-y-180' : ''
         }`}
       >
-        {/* Front side */}
-        <div className="absolute w-full h-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md flex items-center justify-center p-4 backface-hidden">
-          <p className="text-lg font-semibold text-gray-900 dark:text-white">{question}</p>
+        {/* Front Side */}
+        <div className="absolute w-full h-full p-5 flex items-center justify-center bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 backface-hidden">
+          <p className="text-center text-lg font-semibold">{question}</p>
         </div>
 
-        {/* Back side */}
-        <div className="absolute w-full h-full bg-indigo-600 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md flex items-center justify-center p-4 rotate-y-180 backface-hidden">
-          <p className="text-lg font-semibold text-white">{answer}</p>
+        {/* Back Side */}
+        <div className="absolute w-full h-full p-5 flex items-center justify-center bg-indigo-600 text-white rounded-xl shadow-lg border border-indigo-700 rotate-y-180 backface-hidden">
+          <p className="text-center text-lg font-semibold">{answer}</p>
         </div>
       </div>
     </div>

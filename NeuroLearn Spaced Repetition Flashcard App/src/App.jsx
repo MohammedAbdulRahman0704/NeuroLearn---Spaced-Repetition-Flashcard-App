@@ -10,6 +10,7 @@ import AuthLayout from './layouts/AuthLayout';
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
+import Home from './pages/Home';               // <-- import Home
 import DashboardPage from './pages/DashboardPage';
 import DecksPage from './pages/DecksPage';
 import DeckDetailPage from './pages/DeckDetailPage';
@@ -60,6 +61,8 @@ function App() {
       
       {/* Protected routes */}
       <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
+        {/* Make Home the main protected landing */}
+        <Route path="/home" element={<Home />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/decks" element={<DecksPage />} />
         <Route path="/decks/:deckId" element={<DeckDetailPage />} />
