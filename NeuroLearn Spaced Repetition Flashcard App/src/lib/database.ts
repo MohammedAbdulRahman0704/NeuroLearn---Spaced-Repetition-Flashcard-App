@@ -155,7 +155,7 @@ export const seedDatabase = () => {
   `, [userId]);
 
   // Create sample decks
-  const deckIds = [];
+  const deckIds: number[] = [];
   const deckData = [
     { title: 'JavaScript Basics', description: 'Core concepts of JavaScript programming language' },
     { title: 'Spanish Vocabulary', description: 'Common Spanish words and phrases' },
@@ -164,13 +164,18 @@ export const seedDatabase = () => {
 
   for (const deck of deckData) {
     db.run(`
-      INSERT INTO decks (user_id, title, description, created_at, updated_at)
-      VALUES (?, ?, ?, datetime('now'), datetime('now'))
+        INSERT INTO decks (user_id, title, description, created_at, updated_at)
+        VALUES (?, ?, ?, datetime('now'), datetime('now'))
     `, [userId, deck.title, deck.description]);
-    
-    const deckId = db.exec("SELECT last_insert_rowid() as id")[0].values[0][0];
-    deckIds.push(deckId);
-  }
+
+    const result = db.exec("SELECT last_insert_rowid() as id");
+    if (result.length > 0 && result[0].values.length > 0) {
+        const deckId = result[0].values[0][0] as number;
+        deckIds.push(deckId);
+    } else {
+        throw new Error("Failed to retrieve last inserted deck ID");
+    }
+    }
 
   // Create sample tags
   const tagData = ['javascript', 'programming', 'spanish', 'language', 'biology', 'science', 'beginner', 'advanced'];
