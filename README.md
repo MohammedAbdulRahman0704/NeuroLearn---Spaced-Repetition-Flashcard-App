@@ -1,7 +1,3 @@
-Here’s a professional `README.md` for your project, **NeuroLearn: Spaced Repetition Flashcard Engine with Review Stats**, written to industry standards.
-
----
-
 ````markdown
 # 🧠 NeuroLearn – Spaced Repetition Flashcard Engine with Review Stats
 
